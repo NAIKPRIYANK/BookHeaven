@@ -246,6 +246,8 @@ class _BookBottomSheetState extends State<BookBottomSheet> {
                             textColor: Colors.white,
                             fontSize: 16.0,
                           );
+
+                          Navigator.of(context).pop();
                         } else {
                           // ✅ Show error toast if not added
                           Fluttertoast.showToast(
@@ -305,27 +307,31 @@ class _BookBottomSheetState extends State<BookBottomSheet> {
                         fontSize: 16.0,
                       );
                     },
-                    child:widget.bookWithVendor.book.availabilityStatus? Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 5),
-                      alignment: Alignment.center,
-                      height: 48,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(48),
-                        color: ColorManager.white,
-                        border: Border.all(
-                          color: ColorManager.bottomNavigationSelectionColor,
-                          width: 2,
-                        ),
-                      ),
-                      child: Text(
-                        "Buy Now",
-                        style: TextStyle(
-                          fontSize: FontSize.s18,
-                          fontWeight: FontWeightManager.bold,
-                          color: ColorManager.bottomNavigationSelectionColor,
-                        ),
-                      ),
-                    ):Container(),
+                    child: widget.bookWithVendor.book.availabilityStatus
+                        ? Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 5),
+                            alignment: Alignment.center,
+                            height: 48,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(48),
+                              color: ColorManager.white,
+                              border: Border.all(
+                                color:
+                                    ColorManager.bottomNavigationSelectionColor,
+                                width: 2,
+                              ),
+                            ),
+                            child: Text(
+                              "Buy Now",
+                              style: TextStyle(
+                                fontSize: FontSize.s18,
+                                fontWeight: FontWeightManager.bold,
+                                color:
+                                    ColorManager.bottomNavigationSelectionColor,
+                              ),
+                            ),
+                          )
+                        : Container(),
                   ),
                 ),
               ],

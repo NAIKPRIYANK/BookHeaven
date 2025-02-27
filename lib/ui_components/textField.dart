@@ -8,7 +8,7 @@ class InputField extends StatelessWidget {
   final TextEditingController? controller;
   final double width;
   final String hint;
-  final String labelText;
+  final String? labelText;
   final bool hideText;
   final void Function()? onTap;
   final RegExp? regExp;
@@ -35,7 +35,7 @@ class InputField extends StatelessWidget {
     required this.controller,
     required this.width,
     required this.hint,
-    required this.labelText,
+    this.labelText,
     this.prefixText,
     this.keyboardType,
     this.hideText = false,

@@ -15,7 +15,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'event.dart';
 
 class LoginPage extends StatelessWidget {
-  final _formKey = GlobalKey<FormState>(); // Form Key for validation
+  // final _formKey = GlobalKey<FormState>(); // Form Key for validation
   LoginPage({super.key});
 
   @override
@@ -85,7 +85,7 @@ class Page extends StatelessWidget {
             onLeadingPressed: () {
               context.read<LoginBloc>().add(BackEvent(context: context));
             },
-            leadingIcon: Icon(Icons.arrow_back),
+            leadingIcon: const Icon(Icons.arrow_back),
             title: "",
           )),
       body: SingleChildScrollView(
@@ -138,7 +138,7 @@ class Page extends StatelessWidget {
                   width: double.infinity,
                   hint: "Your password",
                   labelText: "Your Password",
-                  hideText: true,
+                  hideText: state.obscurePassword,
                   suffixIcon: IconButton(
                     icon: Icon(
                       state.obscurePassword
