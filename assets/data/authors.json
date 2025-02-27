@@ -1,0 +1,27 @@
+[
+    {
+      "id": 1,
+      "name": "Khaled Hosseini",
+      "image": "assets/images/home_images/authors/author_1.png",
+      "work": "Writer"
+    },
+    {
+      "id": 2,
+      "name": "James Clear",
+      "image": "assets/images/home_images/authors/author_2.png",
+      "work": "Novelist"
+    },
+    {
+      "id": 3,
+      "name": "Mark Manson",
+      "image": "assets/images/home_images/authors/author_3.png",
+      "work": "Writer"
+    },
+    {
+      "id": 4,
+      "name": "Rick Riordan",
+      "image": "assets/images/home_images/authors/author_1.png",
+      "work": "Novelist"
+    }
+  ]
+  

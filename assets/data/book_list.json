@@ -1,0 +1,39 @@
+[
+    {
+      "id": 1,
+      "title": "The Kite Runner",
+      "price": 14.99,
+      "description": "The Kite Runner is the first novel by Afghan-American author Khaled Hosseini. Published in 2003 by Riverhead Books, it tells the story of Amir, a young",
+      "image_path": "assets/images/home_images/books/the_kite_runner.png",
+      "vendor_id": 1,
+      "availabilityStatus":true
+    },
+    {
+      "id": 2,
+      "title": "Atomic Habits",
+      "price": 16.50,
+      "description":"Atomic Habits Published in 2004 by Riverhead Books, it tells the story of Amir, a young",
+      "image_path": "assets/images/home_images/books/book_2.png",
+      "vendor_id": 2,
+      "availabilityStatus":false
+    },
+    {
+      "id": 3,
+      "title": "The Subtle Art of Not Giving a F*ck",
+      "price": 18.00,
+      "description":"Thr Subtle Art of Not Giving a F*ck",
+      "image_path": "assets/images/home_images/books/the_kite_runner.png",
+      "vendor_id": 3,
+      "availabilityStatus":false
+    },
+    {
+      "id": 4,
+      "title": "The Trials of Apollo",
+      "price": 20.00,
+      "description":"The Trials of Apollo",
+      "image_path": "assets/images/home_images/books/book_2.png",
+      "vendor_id": 4,
+      "availabilityStatus":true
+    }
+  ]
+  

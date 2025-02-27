@@ -1,0 +1,23 @@
+[
+    {
+      "id": 1,
+      "discount": 25,
+      "image_path": "assets/images/home_images/books/offer_book.png"
+    },
+    {
+      "id": 2,
+      "discount": 20,
+      "image_path": "assets/images/home_images/books/the_kite_runner.png"
+    },
+    {
+        "id": 3,
+        "discount": 10,
+        "image_path": "assets/images/home_images/books/offer_book.png"
+    },
+    {
+      "id": 4,
+      "discount": 60,
+      "image_path": "assets/images/home_images/books/the_kite_runner.png"
+    }
+  ]
+  
