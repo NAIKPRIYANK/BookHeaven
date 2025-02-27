@@ -1,4 +1,3 @@
-
 import 'package:book_heaven/gen/assets.gen.dart';
 import 'package:book_heaven/presentation/resources/color_manager.dart';
 import 'package:book_heaven/presentation/resources/router/route_manager.dart';
@@ -20,9 +19,9 @@ class ProfilePage extends StatelessWidget {
         listener: (context, state) {
           if (state.status == ProfileStatus.loggedOut) {
             Navigator.of(context).pushNamedAndRemoveUntil(
-                      Routes.loginPage,
-                      (Route<dynamic> route) => false,
-                    );
+              Routes.loginPage,
+              (Route<dynamic> route) => false,
+            );
           }
         },
         builder: (context, state) {
@@ -35,7 +34,7 @@ class ProfilePage extends StatelessWidget {
   Widget _buildPage(BuildContext context, ProfileState state) {
     switch (state.status) {
       case ProfileStatus.initial:
-        return const Scaffold(body: Center(child:CircularProgressIndicator()));
+        return const Scaffold(body: Center(child: CircularProgressIndicator()));
       case ProfileStatus.loading:
         return const Scaffold(body: Center(child: CircularProgressIndicator()));
       case ProfileStatus.loaded:
@@ -106,68 +105,40 @@ class ProfileView extends StatelessWidget {
 
             const SizedBox(height: 30),
 
-            /// 📌 **Logout Button**
-            // SizedBox(
-            //   // width: double.infinity,
-            //   child: InkWell(
-            //     onTap: () {
-            //       showLogoutDialog(context, () {
-            //         context.read<ProfileBloc>().add(LogoutEvent());
-            //       });
-            //     },
-            //     child: Container(
-            //       padding: const EdgeInsets.symmetric(vertical: 12),
-            //       decoration: BoxDecoration(
-            //         color: Colors.white,
-            //         borderRadius: BorderRadius.circular(8),
-            //         border: Border.all(color: ColorManager.primary),
-            //       ),
-            //       child: const Center(
-            //         child: Text(
-            //           "Logout",
-            //           style: TextStyle(
-            //             fontSize: 16,
-            //             fontWeight: FontWeight.bold,
-            //             color: Colors.blueAccent,
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ),
-
             SizedBox(
-  child: InkWell(
-    onTap: () {
-      showLogoutDialog(context, () {
-        context.read<ProfileBloc>().add(LogoutEvent());
-      });
-    },
-    child: IntrinsicWidth( // Adjusts width to fit the content
-      child: IntrinsicHeight( // Adjusts height to fit the content
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16), // Add spacing
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: ColorManager.primary),
-          ),
-          child: const Center(
-            child: Text(
-              "Logout",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Colors.blueAccent,
+              child: InkWell(
+                onTap: () {
+                  showLogoutDialog(context, () {
+                    context.read<ProfileBloc>().add(LogoutEvent());
+                  });
+                },
+                child: IntrinsicWidth(
+                  // Adjusts width to fit the content
+                  child: IntrinsicHeight(
+                    // Adjusts height to fit the content
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8, horizontal: 16), // Add spacing
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: ColorManager.primary),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          "Logout",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blueAccent,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
-      ),
-    ),
-  ),
-),
-
           ],
         ),
       ),
@@ -181,7 +152,7 @@ class ProfileView extends StatelessWidget {
           Assets.images.profile.defaultProfile.path); // Add male avatar
     } else if (gender?.toLowerCase() == "female") {
       return AssetImage(
-          Assets.images.profile.defaultProfile.path); // Add female avatar
+          Assets.images.profile.defaultWomen.path); // Add female avatar
     } else {
       return AssetImage(
           Assets.images.profile.defaultProfile.path); // Default avatar

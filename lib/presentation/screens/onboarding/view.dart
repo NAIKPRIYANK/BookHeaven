@@ -84,24 +84,8 @@ class _PageState extends State<Page> with SingleTickerProviderStateMixin {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // Skip Button
-            Align(
-              alignment: Alignment.topLeft,
-              child: TextButton(
-                onPressed: () {
-                  context.read<OnboardingBloc>().add(OnboardingSkipEvent());
-                },
-                child: Text(
-                  "Skip",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: ColorManager
-                        .primary, // Adjust color to match the design
-                  ),
-                ),
-              ),
-            ),
+        
+          
 
             // SVG Image
             SvgPicture.asset(
@@ -142,73 +126,74 @@ class _PageState extends State<Page> with SingleTickerProviderStateMixin {
             const SizedBox(
               height: 20,
             ),
-            // Buttons
             Column(
-              children: [
-                // Register Button
-                SizedBox(
-                  width: double.infinity,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context)
-                            .pushNamed(Routes.registerPage);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        fixedSize: const Size(327, 56),
-                        backgroundColor: ColorManager.primary, // Button Color
-                        padding: const EdgeInsets.symmetric(vertical: 15),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      child: Text(
-                        "Register",
-                        style: GoogleFonts.openSans(
-                          color: ColorManager.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-
-                const SizedBox(height: 10),
-
-                // Login Button
-                SizedBox(
-                  width: double.infinity,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context)
-                            .pushNamed(Routes.loginPage);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        fixedSize: const Size(327, 56),
-                        backgroundColor:
-                            ColorManager.loginButton, // Button Color
-                        padding: const EdgeInsets.symmetric(vertical: 15),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      child: Text(
-                        "Login",
-                        style: GoogleFonts.openSans(
-                          color: ColorManager.primary,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+  children: [
+    // Register Button
+    SizedBox(
+      width: double.infinity,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: InkWell(
+          onTap: () {
+            Navigator.of(context).pushNamed(Routes.registerPage);
+          },
+          borderRadius: BorderRadius.circular(12),
+          child: Container(
+            width: 327,
+            height: 56,
+            decoration: BoxDecoration(
+              color: ColorManager.primary, // Button Color
+              borderRadius: BorderRadius.circular(12),
             ),
+            alignment: Alignment.center,
+            child: Text(
+              "Register",
+              style: GoogleFonts.openSans(
+                color: ColorManager.white,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+      ),
+    ),
+
+    const SizedBox(height: 10),
+
+    // Login Button
+    SizedBox(
+      width: double.infinity,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: InkWell(
+          onTap: () {
+            Navigator.of(context).pushNamed(Routes.loginPage);
+          },
+          borderRadius: BorderRadius.circular(12),
+          child: Container(
+            width: 327,
+            height: 56,
+            decoration: BoxDecoration(
+              color: ColorManager.loginButton, // Button Color
+              borderRadius: BorderRadius.circular(12),
+            ),
+            alignment: Alignment.center,
+            child: Text(
+              "Login",
+              style: GoogleFonts.openSans(
+                color: ColorManager.primary,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+      ),
+    ),
+  ],
+)
+,
 
             const SizedBox(height: 20),
 

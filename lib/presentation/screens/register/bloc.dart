@@ -70,7 +70,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       emit(state.clone(status: RegisterStatus.loaded));
     } catch (e) {
       _showToast("Registration failed: ${e.toString()}", Colors.red);
-      // emit(state.clone(status: RegisterStatus.error, errorText: e.toString()));
+      
     }
   }
 

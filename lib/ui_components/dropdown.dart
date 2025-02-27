@@ -4,7 +4,7 @@ import '../presentation/resources/color_manager.dart';
 
 class Dropdown extends StatefulWidget {
   final List<String> items;
-  final String title;
+  final String? title;
   final String hint;
   final ValueChanged<String> onItemSelected;
   final String? errorText;
@@ -17,7 +17,7 @@ class Dropdown extends StatefulWidget {
     super.key,
     required this.items,
     required this.onItemSelected,
-    required this.title,
+    this.title,
     required this.hint,
     this.selectedItem,
     this.errorText,
@@ -67,9 +67,13 @@ class _DropdownState extends State<Dropdown> {
               child: DropdownButtonFormField<String>(
                 value: selectedItem,
                 autovalidateMode: widget.autovalidateMode,
+                dropdownColor: ColorManager.white, 
                 hint: Text(
                   widget.hint,
-                  style: GoogleFonts.openSans(fontSize: 16),
+                  style: GoogleFonts.roboto(
+                  color: ColorManager.grey,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600),
                   softWrap: true,
                   overflow: TextOverflow.ellipsis,
                 ),

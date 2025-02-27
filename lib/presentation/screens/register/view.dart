@@ -25,7 +25,7 @@ class RegisterPage extends StatelessWidget {
               showDialog(
                 context: context,
                 barrierDismissible: false,
-                builder: (_) => Center(child: CircularProgressIndicator()),
+                builder: (_) => const Center(child: CircularProgressIndicator()),
               );
               break;
             case RegisterStatus.loaded:
@@ -111,15 +111,7 @@ class RegisterPage extends StatelessWidget {
                         hint: "Your email",
                         labelText: "Email",
                         textInputType: TextInputType.emailAddress,
-                        validator: (value) {
-                          // if (value == null || value.isEmpty)
-                          //   return "Email is required";
-                          // final emailRegex = RegExp(
-                          //     r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
-                          // if (!emailRegex.hasMatch(value))
-                          //   return "Enter a valid email";
-                          // return null;
-                        },
+                        validator: (value) {},
                       ),
                       _buildLabel("Password"),
                       InputField(
@@ -131,9 +123,12 @@ class RegisterPage extends StatelessWidget {
                             r'^(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z0-9!@#$%^&*(),.?":{}|<>]{6,}$'),
                         hideText: state.obscurePassword,
                         suffixIcon: IconButton(
-                            icon: Icon(state.obscurePassword
-                                ? Icons.visibility_off
-                                : Icons.visibility),
+                            icon: Icon(
+                              state.obscurePassword
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: ColorManager.grey,
+                            ),
                             onPressed: () {
                               context
                                   .read<RegisterBloc>()
@@ -146,11 +141,11 @@ class RegisterPage extends StatelessWidget {
                       _buildLabel("Age Group"),
                       Dropdown(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
-                        items: ["18-24", "25-34", "35-44", "45+"],
+                        items: const ["18-24", "25-34", "35-44", "45+"],
                         onItemSelected: (value) {
                           state.ageGroupController.text = value;
                         },
-                        title: "Age Group",
+                        // title: "Age Group",
                         hint: "Select your age group",
                         selectedItem: state.ageGroupController.text.isEmpty
                             ? null
@@ -167,6 +162,8 @@ class RegisterPage extends StatelessWidget {
                         children: [
                           _buildCheckbox("Reading", state.interests, context),
                           _buildCheckbox("Music", state.interests, context),
+                          _buildCheckbox("Playing", state.interests, context),
+                         
                         ],
                       ),
                       const SizedBox(height: 20),

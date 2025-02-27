@@ -6,6 +6,7 @@ import 'package:book_heaven/ui_components/appbar_com.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CartPage extends StatelessWidget {
@@ -59,10 +60,7 @@ class _PageState extends State<Page> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size(scWidth, 60),
-
         child: const CustomAppBar(
-        
-
           title: "My Bag",
         ),
       ),
@@ -251,9 +249,15 @@ class _PageState extends State<Page> {
                     SizedBox(
                       width: double.infinity,
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Fluttertoast.showToast(
+                              msg: "Book Ordered successfully",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              backgroundColor: Colors.greenAccent);
+                        },
                         borderRadius:
-                            BorderRadius.circular(8), // Ripple effect rounded
+                            BorderRadius.circular(48), // Ripple effect rounded
                         child: Container(
                           padding: const EdgeInsets.symmetric(vertical: 14),
                           decoration: BoxDecoration(
