@@ -50,9 +50,10 @@ class LoginPage extends StatelessWidget {
         );
       case LoginStatus.success:
         WidgetsBinding.instance.addPostFrameCallback((_) {
-          Navigator.of(context).pushReplacementNamed(
-            Routes.bottomNavigationMainPage,
-          );
+          Navigator.of(context).pushNamedAndRemoveUntil(
+                      Routes.bottomNavigationMainPage,
+                      (Route<dynamic> route) => false,
+                    );
         });
         return const Scaffold(
           body: Center(
