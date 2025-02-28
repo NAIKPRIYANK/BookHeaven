@@ -46,9 +46,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     Navigator.pop(event.context);
   }
 
-  /// ✅ **Handles user login & stores session**
+  ///  **Handles user login & stores session**
   Future<void> _submit(SubmitEvent event, Emitter<LoginState> emit) async {
-
     String email = event.email.trim();
     String password = event.password.trim();
 
@@ -73,9 +72,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setInt("userId", user.id ?? 0);
 
-        
-
-        // ✅ Convert `UserModel` to `LocalUserModel`
+        //  Convert `UserModel` to `LocalUserModel`
         LocalUserModel localUser = LocalUserModel(
           id: user.id,
           username: user.username,
@@ -87,11 +84,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           jwt: "sample_jwt_token", // Add JWT if applicable
         );
 
-        // ✅ Store user session in SharedPreferences
+        //  Store user session in SharedPreferences
         await LocalUser().setUser(localUser, localUser.jwt ?? "");
         _showToast("Login successful!", Colors.green);
         emit(state.clone(status: LoginStatus.success));
-        
       } else {
         _showToast("User not found", Colors.red);
         return;

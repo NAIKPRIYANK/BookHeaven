@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:book_heaven/database/sqflite_database_service.dart';
 import 'package:book_heaven/gen/assets.gen.dart';
 import 'package:book_heaven/models/bagbook_model.dart';
@@ -225,39 +227,56 @@ class _BookBottomSheetState extends State<BookBottomSheet> {
                           await SharedPreferences.getInstance();
                       final userId = prefs.getInt("userId");
                       if (widget.bookWithVendor.book.availabilityStatus) {
-                        BagBookModel bagBookModel = BagBookModel(
-                            userId: userId ?? 0,
-                            bookName: widget.bookWithVendor.book.title,
-                            bookPrice: widget.bookWithVendor.book.price,
-                            quantity: quantity,
-                            description: widget.bookWithVendor.book.description,
-                            imagePath: widget.bookWithVendor.book.imagePath);
-
-                        int result = await DatabaseHelper.instance
-                            .addBookToBag(bagBookModel);
-
-                        if (result > 0) {
-                          // ✅ Show Flutter toast message
+                        bool exists = await DatabaseHelper.instance.isBookInBag(
+                            userId ?? 0, widget.bookWithVendor.book.id);
+                        if (exists) {
                           Fluttertoast.showToast(
-                            msg: "Book added successfully!",
+                            msg:
+                                "Book already in bag,You can increase quatity from bag!",
                             toastLength: Toast.LENGTH_SHORT,
                             gravity: ToastGravity.BOTTOM,
-                            backgroundColor: Colors.green,
+                            backgroundColor: Colors.orange,
                             textColor: Colors.white,
                             fontSize: 16.0,
                           );
-
                           Navigator.of(context).pop();
                         } else {
-                          // ✅ Show error toast if not added
-                          Fluttertoast.showToast(
-                            msg: "Failed to add book. Try again!",
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.BOTTOM,
-                            backgroundColor: Colors.red,
-                            textColor: Colors.white,
-                            fontSize: 16.0,
-                          );
+                          BagBookModel bagBookModel = BagBookModel(
+                              userId: userId ?? 0,
+                              bookName: widget.bookWithVendor.book.title,
+                              bookPrice: widget.bookWithVendor.book.price,
+                              quantity: quantity,
+                              description:
+                                  widget.bookWithVendor.book.description,
+                              imagePath: widget.bookWithVendor.book.imagePath,
+                              bookId: widget.bookWithVendor.book.id);
+
+                          int result = await DatabaseHelper.instance
+                              .addBookToBag(bagBookModel);
+
+                          if (result > 0) {
+                            //  Show Flutter toast message
+                            Fluttertoast.showToast(
+                              msg: "Book added successfully!",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              backgroundColor: Colors.green,
+                              textColor: Colors.white,
+                              fontSize: 16.0,
+                            );
+
+                            Navigator.of(context).pop();
+                          } else {
+                            //  Show error toast if not added
+                            Fluttertoast.showToast(
+                              msg: "Failed to add book. Try again!",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white,
+                              fontSize: 16.0,
+                            );
+                          }
                         }
                       } else {
                         Fluttertoast.showToast(
@@ -268,6 +287,7 @@ class _BookBottomSheetState extends State<BookBottomSheet> {
                           textColor: Colors.white,
                           fontSize: 16.0,
                         );
+                        Navigator.of(context).pop();
                       }
 
                       // Add to Bag Action

@@ -85,7 +85,7 @@ class _PageState extends State<Page> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // ✅ Book List
+                    //  Book List
                     ListView.separated(
                       shrinkWrap: true,
                       physics:
@@ -103,7 +103,7 @@ class _PageState extends State<Page> {
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              // ✅ Book Image
+                              //  Book Image
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(8),
                                 child: Image.asset(
@@ -115,7 +115,7 @@ class _PageState extends State<Page> {
                               ),
                               const SizedBox(width: 12),
 
-                              // ✅ Book Name & Price
+                              //  Book Name & Price
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -167,7 +167,7 @@ class _PageState extends State<Page> {
 
                               const SizedBox(width: 16),
 
-                              // ✅ Price & Remove Button
+                              //  Price & Remove Button
                               Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -202,12 +202,12 @@ class _PageState extends State<Page> {
                       },
                     ),
 
-                    // ✅ Summary Section
+                    //  Summary Section
                     const SizedBox(height: 12),
                     Divider(height: 1, color: ColorManager.signInBorder),
                     const SizedBox(height: 20),
 
-                    // ✅ Book Name & Price List
+                    //  Book Name & Price List
                     Column(
                       children: widget.state.items.map((item) {
                         return Padding(
@@ -245,7 +245,7 @@ class _PageState extends State<Page> {
                         isTotal: true),
                     const SizedBox(height: 40),
 
-                    // ✅ Pay Now Button
+                    //  Pay Now Button
                     SizedBox(
                       width: double.infinity,
                       child: InkWell(

@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LocalUser {
   late final SharedPreferences _prefs;
 
-  /// ✅ **Store user data in SharedPreferences**
+  ///  **Store user data in SharedPreferences**
   Future<void> setUser(LocalUserModel user, String token) async {
     try {
       _prefs = await SharedPreferences.getInstance();
@@ -21,7 +21,7 @@ class LocalUser {
     }
   }
 
-  /// ✅ **Get user data from SharedPreferences**
+  ///  **Get user data from SharedPreferences**
   Future<LocalUserModel?> getUser() async {
     try {
       _prefs = await SharedPreferences.getInstance();
@@ -37,7 +37,7 @@ class LocalUser {
     return null;
   }
 
-  /// ✅ **Store only the JWT Token**
+  ///  **Store only the JWT Token**
   Future<void> setToken(String token) async {
     try {
       _prefs = await SharedPreferences.getInstance();
@@ -47,7 +47,7 @@ class LocalUser {
     }
   }
 
-  /// ✅ **Retrieve the JWT Token**
+  ///  **Retrieve the JWT Token**
   Future<String?> getToken() async {
     try {
       _prefs = await SharedPreferences.getInstance();
@@ -58,7 +58,7 @@ class LocalUser {
     return null;
   }
 
-  /// ✅ **Check if user is logged in**
+  ///  **Check if user is logged in**
   Future<bool> isUserLoggedIn() async {
     _prefs = await SharedPreferences.getInstance();
     return _prefs.containsKey('user_data');

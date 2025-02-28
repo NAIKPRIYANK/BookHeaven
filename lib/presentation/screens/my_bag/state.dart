@@ -13,9 +13,7 @@ class CartState extends Equatable {
 
   factory CartState.initial() => CartState(items: [], status: CartStatus.initial);
 
-  // double get subtotal => items?.fold(0, (total, item) => total + (item.price * item.quantity));
-  // double get shipping => 2.0;
-  // double get totalPayment => subtotal + shipping;
+ 
 
   CartState clone({List<BagBookModel>? items, CartStatus? status}) {
     return CartState(

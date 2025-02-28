@@ -76,31 +76,31 @@ class _PageState extends State<Page> with SingleTickerProviderStateMixin {
     double scWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: Size(scWidth, 60),
-          child: CustomAppBar(
-            onLeadingPressed: () {
-              // context.read<LoginBloc>().add(BackEvent(context: context));
-            },
-            leadingIcon: SvgPicture.asset(Assets.images.homeImages.icons.searchIcon),
-            title: "Home",
-            actions: [
-              SvgPicture.asset(
-                        fit: BoxFit.fill,
-                        Assets.images.homeImages.icons.notificationIcon),
-            ],
-          )),
-
+        appBar: PreferredSize(
+            preferredSize: Size(scWidth, 60),
+            child: CustomAppBar(
+              onLeadingPressed: () {
+                // context.read<LoginBloc>().add(BackEvent(context: context));
+              },
+              leadingIcon:
+                  SvgPicture.asset(Assets.images.homeImages.icons.searchIcon),
+              title: "Home",
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: SvgPicture.asset(
+                      fit: BoxFit.fill,
+                      Assets.images.homeImages.icons.notificationIcon),
+                ),
+              ],
+            )),
         backgroundColor: ColorManager.white,
         body: Padding(
           padding: const EdgeInsets.all(18),
           child: SingleChildScrollView(
             child: Column(
-          
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-          
-
                 //show offer book
                 BookOfferSlider(
                   books: widget.state.books ?? [],
@@ -121,13 +121,9 @@ class _PageState extends State<Page> with SingleTickerProviderStateMixin {
                 ),
                 const SectionHeader(title: "Authors"),
                 AuthorList(authors: widget.state.authors ?? []),
-                
               ],
             ),
           ),
         ));
-
-   
-
   }
 }

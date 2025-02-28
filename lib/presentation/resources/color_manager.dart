@@ -11,10 +11,6 @@ class ColorManager {
   static Color textFieldlabelColor = HexColor.fromHex("#B8B8B8");
   static Color increaseDescreseContColor = HexColor.fromHex("#E5F3FF");
 
-
-
-  
-
   static Color promo1BgColor = HexColor.fromHex("#4D4472").withOpacity(1);
 
   static Color selectedPackageBorderColor =
@@ -25,22 +21,10 @@ class ColorManager {
 
   //text color
   static Color textColor = HexColor.fromHex("#3D4951");
-  static Color myProfileTextColor = HexColor.fromHex("#A5D4ED");
-  static Color myProfileContainerColor = HexColor.fromHex("E8F4F1");
+
   static Color logOutButtonBackgroundColor = HexColor.fromHex("#FFF6F6");
   static Color logoutButtonTextColor = HexColor.fromHex("#F85353");
 
-  static Color otpTextColor = HexColor.fromHex("#9EA4A8");
-  static Color homeTextColor1 = HexColor.fromHex("#6E777C");
-  static Color homeTextColor2 = HexColor.fromHex("#0D1C25");
-  static Color homeTextColor3 = HexColor.fromHex("#1BB71B");
-  static Color dialogBoxTextColor = HexColor.fromHex("#3D4951");
-  static Color customCardWidgetTextColor = HexColor.fromHex("#0D1C25");
-  static Color myProfileblueCardTextColor = HexColor.fromHex("#A5D4ED");
-  static Color editLanguageTextColor = HexColor.fromHex("#3D4951");
-  static Color editLanguageBorderColor = HexColor.fromHex("#E7E8E9");
-  static Color senderMessageTanColorinChat = HexColor.fromHex("#1E93D1");
-  static Color receiverMessageTabColorinChat = HexColor.fromHex("#78BEE3");
   static Color dateTabColorTextinChat = HexColor.fromHex("#9EA4A8");
 
   static Color containerColor = HexColor.fromHex("#E8F4FA");
@@ -60,7 +44,6 @@ class ColorManager {
   // static Color textFieldColor = HexColor.fromHex("#E8F4FA");
   static Color textFieldBorderColor = HexColor.fromHex("#1E93D1");
   static Color tabBarBorder = HexColor.fromHex('#D2E9F6');
-  static Color quizOptionsBackgroundColor = HexColor.fromHex('#E8F4FA');
 
   static const Gradient primaryGradient = LinearGradient(
     colors: [Color(0xff0ed0cf), Color(0xff01d0b3)],

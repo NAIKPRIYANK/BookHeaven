@@ -1,4 +1,3 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:book_heaven/local_user/local_user.dart';
 import 'event.dart';
@@ -14,15 +13,13 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     try {
       emit(state.clone(status: SplashStatus.initial));
 
-      // ✅ Check if user data exists in SharedPreferences
+      //  Check if user data exists in SharedPreferences
       bool isLoggedIn = await LocalUser().isUserLoggedIn();
 
-   
-
-      // ✅ Emit success state with login status
+      //  Emit success state with login status
       emit(state.clone(status: SplashStatus.success, isLoggedIn: isLoggedIn));
     } catch (e) {
-      // ✅ Handle errors gracefully
+      //  Handle errors gracefully
       emit(state.clone(status: SplashStatus.failed, errorText: e.toString()));
     }
   }

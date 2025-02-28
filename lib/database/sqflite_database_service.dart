@@ -1,7 +1,3 @@
-
-
-
-
 import 'package:book_heaven/models/bagbook_model.dart';
 import 'package:book_heaven/models/user_info.dart';
 import 'package:sqflite/sqflite.dart';
@@ -16,7 +12,7 @@ class DatabaseHelper {
 
   Future<Database> get database async {
     if (_database != null) return _database!;
-    _database = await _initDB('book_hev.db');
+    _database = await _initDB('book_heaven.db');
     return _database!;
   }
 
@@ -44,8 +40,8 @@ class DatabaseHelper {
       )
     ''');
 
-     // ✅ Create BagBooks Table (Relation with Users)
-  await db.execute('''
+    //  Create BagBooks Table (Relation with Users)
+    await db.execute('''
     CREATE TABLE bag_books (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       user_id INTEGER NOT NULL,
@@ -54,12 +50,13 @@ class DatabaseHelper {
       quantity INTEGER NOT NULL,
       description TEXT NOT NULL,
       imagePath TEXT NOT NULL,
+      book_id INTEGER NOT NULL,
       FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     )
   ''');
   }
 
-  /// ✅ Check if email already exists
+  ///  Check if email already exists
   Future<bool> emailExists(String email) async {
     final db = await instance.database;
     final result = await db.query(
@@ -70,7 +67,7 @@ class DatabaseHelper {
     return result.isNotEmpty;
   }
 
-  /// ✅ Register a new user (Ensuring non-null values)
+  ///  Register a new user (Ensuring non-null values)
   Future<int> registerUser(UserModel user) async {
     final db = await instance.database;
 
@@ -89,14 +86,14 @@ class DatabaseHelper {
     return await db.insert('users', user.toMap());
   }
 
-  /// ✅ Fetch all users
+  ///  Fetch all users
   Future<List<UserModel>> getAllUsers() async {
     final db = await instance.database;
     final result = await db.query('users');
     return result.map((json) => UserModel.fromMap(json)).toList();
   }
 
-  /// ✅ Login User (Hash passwords in real-world cases)
+  ///  Login User (Hash passwords in real-world cases)
   Future<bool> loginUser(String email, String password) async {
     final db = await instance.database;
 
@@ -112,7 +109,6 @@ class DatabaseHelper {
 
     return result.isNotEmpty;
   }
-
 
   Future<UserModel?> getUserByEmail(String email) async {
     final db = await instance.database;
@@ -135,53 +131,58 @@ class DatabaseHelper {
     return null; // Return null if user is not found
   }
 
-
   Future<int> addBookToBag(BagBookModel book) async {
-  final db = await instance.database;
-  return await db.insert('bag_books', book.toMap());
+    final db = await instance.database;
+    return await db.insert('bag_books', book.toMap());
+  }
+
+  Future<List<BagBookModel>> getUserBagBooks(int userId) async {
+    final db = await instance.database;
+    final result = await db.query(
+      'bag_books',
+      where: 'user_id = ?',
+      whereArgs: [userId],
+    );
+
+    return result.map((json) => BagBookModel.fromMap(json)).toList();
+  }
+
+  ///  Remove a book from the bag by its ID
+  Future<int> removeBookFromBag(int bookId) async {
+    final db = await instance.database;
+    return await db.delete(
+      'bag_books',
+      where: 'id = ?',
+      whereArgs: [bookId],
+    );
+  }
+
+  ///  Increase the quantity of a book in the bag
+  Future<int> increaseBookQuantity(int bookId) async {
+    final db = await instance.database;
+    return await db.rawUpdate(
+      'UPDATE bag_books SET quantity = quantity + 1 WHERE id = ?',
+      [bookId],
+    );
+  }
+
+  ///  Decrease the quantity of a book in the bag (ensure it doesn't go below 1)
+  Future<int> decreaseBookQuantity(int bookId) async {
+    final db = await instance.database;
+    return await db.rawUpdate(
+      'UPDATE bag_books SET quantity = CASE WHEN quantity > 1 THEN quantity - 1 ELSE 1 END WHERE id = ?',
+      [bookId],
+    );
+  }
+
+  Future<bool> isBookInBag(int userId, int bookId) async {
+    final db = await instance.database;
+    final result = await db.query(
+      'bag_books',
+      where: 'user_id = ? AND book_id = ?',
+      whereArgs: [userId, bookId],
+    );
+
+    return result.isNotEmpty;
+  }
 }
-
-
-Future<List<BagBookModel>> getUserBagBooks(int userId) async {
-  final db = await instance.database;
-  final result = await db.query(
-    'bag_books',
-    where: 'user_id = ?',
-    whereArgs: [userId],
-  );
-
-  return result.map((json) => BagBookModel.fromMap(json)).toList();
-}
-
-
-/// ✅ Remove a book from the bag by its ID
-Future<int> removeBookFromBag(int bookId) async {
-  final db = await instance.database;
-  return await db.delete(
-    'bag_books',
-    where: 'id = ?',
-    whereArgs: [bookId],
-  );
-}
-
-/// ✅ Increase the quantity of a book in the bag
-Future<int> increaseBookQuantity(int bookId) async {
-  final db = await instance.database;
-  return await db.rawUpdate(
-    'UPDATE bag_books SET quantity = quantity + 1 WHERE id = ?',
-    [bookId],
-  );
-}
-
-/// ✅ Decrease the quantity of a book in the bag (ensure it doesn't go below 1)
-Future<int> decreaseBookQuantity(int bookId) async {
-  final db = await instance.database;
-  return await db.rawUpdate(
-    'UPDATE bag_books SET quantity = CASE WHEN quantity > 1 THEN quantity - 1 ELSE 1 END WHERE id = ?',
-    [bookId],
-  );
-}
-
-
-}
-

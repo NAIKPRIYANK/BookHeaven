@@ -13,13 +13,7 @@ class AppStrings {
   static const String commingSoon = "Comming Soon";
   // static const String dontHaveAcc = "Don't have an account?";
   // static const String dontHaveAcc = "Don't have an account?";
-  // static const String dontHaveAcc = "Don't have an account?";
-  // static const String dontHaveAcc = "Don't have an account?";
-  // static const String dontHaveAcc = "Don't have an account?";
-  // static const String dontHaveAcc = "Don't have an account?";
-  // static const String dontHaveAcc = "Don't have an account?";
-  // static const String dontHaveAcc = "Don't have an account?";
-  // static const String dontHaveAcc = "Don't have an account?";
+
 
 
 }

@@ -6,31 +6,32 @@ class BagBookModel {
   int quantity;
   String description;
   String imagePath;
+  int bookId;
 
-  BagBookModel({
-    this.id,
-    required this.userId,
-    required this.bookName,
-    required this.bookPrice,
-    required this.quantity,
-    required this.description,
-    required this.imagePath
-  });
+  BagBookModel(
+      {this.id,
+      required this.userId,
+      required this.bookName,
+      required this.bookPrice,
+      required this.quantity,
+      required this.description,
+      required this.imagePath,
+      required this.bookId});
 
-  /// ✅ Convert JSON (DB Data) to Model
+  ///  Convert JSON (DB Data) to Model
   factory BagBookModel.fromMap(Map<String, dynamic> map) {
     return BagBookModel(
-      id: map['id'],
-      userId: map['user_id'],
-      bookName: map['book_name'],
-      bookPrice: map['book_price'],
-      quantity: map['quantity'],
-      description: map['description'],
-      imagePath: map['imagePath']
-    );
+        id: map['id'],
+        userId: map['user_id'],
+        bookName: map['book_name'],
+        bookPrice: map['book_price'],
+        quantity: map['quantity'],
+        description: map['description'],
+        imagePath: map['imagePath'],
+        bookId: map['book_id']);
   }
 
-  /// ✅ Convert Model to Map for DB Storage
+  ///  Convert Model to Map for DB Storage
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -39,7 +40,8 @@ class BagBookModel {
       'book_price': bookPrice,
       'quantity': quantity,
       'description': description,
-      'imagePath':imagePath
+      'imagePath': imagePath,
+      'book_id': bookId
     };
   }
 }
