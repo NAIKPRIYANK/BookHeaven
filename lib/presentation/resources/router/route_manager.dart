@@ -8,12 +8,12 @@ import 'package:book_heaven/presentation/screens/splash/view.dart';
 
 class Routes {
   static const String loginPage = "/loginPage";
-  static const String editProfilePage = "/editProfilePage";
-  static const String forgotPassPage = "/forgotPassPage";
+
+
   static const String splashPage = "/splashPage";
-  static const String resetPasswordPage = "/resetPasswordPage";
+
   static const String homePage = "/homePage";
-  static const String otpPage = "/otpPage";
+
   static const String onboardingPage = "/onboardingPage";
   static const String registerPage = "/registerPage";
   static const String bottomNavigationMainPage = "/bottomNavigationMainPage";

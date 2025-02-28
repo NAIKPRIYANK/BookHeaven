@@ -28,7 +28,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 
       emit(state.clone(items: bagbookList, status: CartStatus.loaded));
     } catch (e) {
-      log("Error initializing cart: $e");
+
       emit(state.clone(status: CartStatus.error));
     }
   }
@@ -53,13 +53,14 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         List<BagBookModel> updatedBookBagList =
             await DatabaseHelper.instance.getUserBagBooks(userId ?? 0);
 
-        // ✅ Emit new state with updated cart items
+        //  Emit new state with updated cart items
         emit(state.clone(items: updatedBookBagList, status: CartStatus.loaded));
       } else {
-        log("Failed to remove item");
+       
+          emit(state.clone(status: CartStatus.error));
       }
     } catch (e) {
-      log("Error removing item: $e");
+     
       emit(state.clone(status: CartStatus.error));
     }
   }
@@ -77,7 +78,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         List<BagBookModel> updatedBagList =
             await DatabaseHelper.instance.getUserBagBooks(userId ?? 0);
 
-        // ✅ Emit new state with updated cart items
+        //  Emit new state with updated cart items
         emit(state.clone(items: updatedBagList, status: CartStatus.loaded));
       } else {
         log("Failed to increase book quantity");
@@ -103,7 +104,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         List<BagBookModel> updatedBagList =
             await DatabaseHelper.instance.getUserBagBooks(userId ?? 0);
 
-        // ✅ Emit new state with updated cart items
+        //  Emit new state with updated cart items
         emit(state.clone(items: updatedBagList, status: CartStatus.loaded));
       } else {
         log("Failed to decrease book quantity");
